@@ -1,4 +1,3 @@
-// Exercice 4 - Étape 1
 export function ValidateSpellPower(
   target: object,
   propertyKey: string | symbol,
@@ -20,7 +19,6 @@ export function ValidateSpellPower(
   };
 }
 
-// Exercice 5 - Étape 1
 export function Cache(
   target: object,
   propertyKey: string | symbol,

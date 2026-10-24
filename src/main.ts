@@ -1,10 +1,9 @@
-import type { NewWizard } from "./types"; // (ajout)
-import { WizardRepository, SpellRepository } from "./repository"; // (ajout)
-import type { SpellCastEvent } from "./types"; // Exercice 3
-import { Cache } from "./decorators"; // Exercice 5
-import type { House, Wizard } from "./types"; // Exercice 6
+import type { NewWizard } from "./types"; 
+import { WizardRepository, SpellRepository } from "./repository"; 
+import type { SpellCastEvent } from "./types";
+import { Cache } from "./decorators"; 
+import type { House, Wizard } from "./types"; 
 
-// ============ Exercice 1 : test (ajout, la slide ne donne pas le code) ============
 const wizardRepo = new WizardRepository();
 
 const newWizard: NewWizard = {
@@ -17,11 +16,9 @@ const newWizard: NewWizard = {
 wizardRepo.add({ id: 1, ...newWizard });
 console.log(wizardRepo.getAll());
 
-// ============ Exercice 2 : test (ajout, la slide ne donne pas le code) ============
 wizardRepo.add({ id: 2, name: "Draco Malfoy", house: "Slytherin", level: 5, active: true });
 console.log(wizardRepo.findByHouse("Gryffindor"));
 
-// ============ Exercice 3 - Étape 2 ============
 function handleSpellCast(event: SpellCastEvent): void {
   console.log(
     `Wizard ${event.wizardId} cast ${event.spellName}`
@@ -34,8 +31,7 @@ handleSpellCast({
   spellName: "Expelliarmus"
 });
 
-// ============ Exercice 4 - Étape 3 ============
-const spells = new SpellRepository(); // (ajout)
+const spells = new SpellRepository(); 
 
 spells.add({
   id: 102,
@@ -44,7 +40,7 @@ spells.add({
   power: 50
 });
 
-try { // (ajout) pour que le script continue après l'erreur
+try { 
   spells.add({
     id: 103,
     name: "Invalid Spell",
@@ -52,10 +48,9 @@ try { // (ajout) pour que le script continue après l'erreur
     power: -10
   });
 } catch (e) {
-  console.log((e as Error).message); // "Spell power cannot be negative"
+  console.log((e as Error).message); 
 }
 
-// ============ Exercice 5 - Étape 2 ============
 class SpellCalculator {
   @Cache
   calculatePower(basePower: number, multiplier: number): number {
@@ -71,7 +66,6 @@ console.log(calculator.calculatePower(10, 3));
 console.log(calculator.calculatePower(10, 3));
 console.log(calculator.calculatePower(5, 2));
 
-// ============ Exercice 6 - Étape 1 ============
 const validHouses: readonly House[] = [
   "Gryffindor",
   "Slytherin",
@@ -86,7 +80,6 @@ function isHouse(value: unknown): value is House {
   );
 }
 
-// ============ Exercice 6 - Étape 2 ============
 function isWizard(value: unknown): value is Wizard {
   if (typeof value !== "object" || value === null) {
     return false;
@@ -103,7 +96,6 @@ function isWizard(value: unknown): value is Wizard {
   );
 }
 
-// ============ Exercice 6 - Étape 3 ============
 const validData: unknown = {
   id: 1,
   name: "Harry Potter",
@@ -120,5 +112,5 @@ const invalidData: unknown = {
   active: true
 };
 
-console.log(isWizard(validData));   // true
-console.log(isWizard(invalidData)); // false
+console.log(isWizard(validData));   
+console.log(isWizard(invalidData)); 
